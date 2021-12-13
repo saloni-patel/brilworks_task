@@ -9,9 +9,10 @@ const CreateForm = (props) => {
     title: "",
     description: "",
     status: "Select",
+    storyPoints: "0",
   });
 
-console.log(props.data)
+  console.log(props.data);
   return (
     <>
       <div className="main-create">
@@ -48,6 +49,7 @@ console.log(props.data)
               <div className="input">
                 <Dropdown>
                   <Dropdown.Toggle variant="outline" id="dropdown-basic">
+                    {todo.status}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
@@ -67,6 +69,18 @@ console.log(props.data)
                 </Dropdown>
               </div>
             </div>
+            <div className="label">
+              <h6>StoryPoint</h6>
+            </div>
+            <div className="input">
+              <input
+                type="number"
+                value={todo.storyPoints}
+                onChange={(e) =>
+                  setTodo({ ...todo, storyPoints: e.target.value })
+                }
+              />
+            </div>
 
             <div className="create-button">
               <Link to="/">
@@ -82,11 +96,11 @@ console.log(props.data)
   );
 };
 const mapStateToProps = (state) => {
-    return {
-      data : state.todoReducer,
-    };
+  return {
+    data: state.todoReducer,
   };
-  
+};
+
 const mapDispatchtoProps = {
   addTodo,
 };

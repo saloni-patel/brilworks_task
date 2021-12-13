@@ -6,17 +6,17 @@ export const addTodo = (data) => {
     }
 }
 
-export const updateTodo = (updateData) => {
+export const updateTodo = (data, update) => {
    
     return{
         type: "UPDATE_TODO",
-        payload: updateData
+        payload: {data, update}
     }
 }
-export const updateTask = (task) => {
+// export const updateTask = (task) => {
    
-    return{
-        type: "UPDATE_TASK",
-        payload: task
-    }
-}
+//     return{
+//         type: "UPDATE_TASK",
+//         payload: task
+//     }
+// }

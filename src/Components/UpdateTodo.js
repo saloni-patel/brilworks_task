@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { addTodo, updateTodo } from "../Action";
 
-const UpdateTask = (props) => {
-  console.log(props.task,'99')
-  const updateData =null
+const UpdateTask = (props, { updatebleTask }) => {
+  console.log(props.updatebleTask, "SAAAAAA");
+  const updateData = props.updatebleTask;
   const [taskUpdate, setTaskUpdate] = useState({
     title: updateData.title,
     description: updateData.description,
-    status: 'Change Status',
+    status: "Change Status",
   });
   return (
     <>
@@ -20,7 +20,13 @@ const UpdateTask = (props) => {
             <h6>Title</h6>
           </div>
           <div className="input">
-            <input type="text" />
+            <input
+              type="text"
+              value={taskUpdate.title}
+              onChange={(e) =>
+                setTaskUpdate({ ...taskUpdate, title: e.target.value })
+              }
+            />
           </div>
 
           <div className="description">
@@ -28,7 +34,13 @@ const UpdateTask = (props) => {
               <h6>Description</h6>
             </div>
             <div className="input">
-              <input type="text" />
+              <input
+                type="text"
+                value={taskUpdate.description}
+                onChange={(e) =>
+                  setTaskUpdate({ ...taskUpdate, description: e.target.value })
+                }
+              />
             </div>
 
             <div className="status">
@@ -37,23 +49,49 @@ const UpdateTask = (props) => {
               </div>
               <div className="input">
                 <Dropdown>
-                  <Dropdown.Toggle
-                    variant="outline"
-                    id="dropdown-basic"
-                  ></Dropdown.Toggle>
+                  <Dropdown.Toggle variant="outline" id="dropdown-basic">
+                    {taskUpdate.status}
+                  </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item>ToDo</Dropdown.Item>
-                    <Dropdown.Item>Done</Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) =>
+                        setTaskUpdate({ ...taskUpdate, status: "In Progress" })
+                      }
+                    >
+                      In Progress
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) =>
+                        setTaskUpdate({ ...taskUpdate, status: "Done" })
+                      }
+                    >
+                      Done
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
+            </div>
+            <div className="input">
+              <input
+                type="number"
+                value={taskUpdate.storyPoints}
+                onChange={(e) =>
+                  setTaskUpdate({ ...taskUpdate, storyPoints: e.target.value })
+                }
+              />
             </div>
 
             <div className="create-button">
               <Link to="/">
                 {/* <Button variant="dark" onClick={() => props.isOpen(false)}> */}
-                <Button variant='success' disabled={!taskUpdate.status} onClick={() => props.updateTodo(updateData, taskUpdate)}>Update</Button>
+                <Button
+                  variant="success"
+                  disabled={!taskUpdate.status}
+                  onClick={() => props.updateTodo(updateData, taskUpdate)}
+                >
+                  Update
+                </Button>
               </Link>
             </div>
           </div>
@@ -65,7 +103,7 @@ const UpdateTask = (props) => {
 const mapStateToProps = (state) => {
   return {
     data: state.todoReducer,
-    task: state.todoReducer.task
+    task: state.todoReducer.task,
   };
 };
 

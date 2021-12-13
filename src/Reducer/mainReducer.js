@@ -5,8 +5,10 @@ export const todoReducer = (state = [], { type, payload }) => {
       return [...state, payload];
 
       case "UPDATE_TODO":
-        const newData = state.find((item) => item.id === payload.id);
-        return newData;
+          const index = state.indexOf(payload.data)
+          const newData = [...state];
+          newData[index] = payload.update;
+          return newData;
 
     default:
       return state;
