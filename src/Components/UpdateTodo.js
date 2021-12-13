@@ -56,14 +56,14 @@ const UpdateTask = (props, { updatebleTask }) => {
                   <Dropdown.Menu>
                     <Dropdown.Item
                       onClick={(e) =>
-                        setTaskUpdate({ ...taskUpdate, status: "In Progress" })
+                        setTaskUpdate({ ...taskUpdate, status: "IN PROGRESS" })
                       }
                     >
                       In Progress
                     </Dropdown.Item>
                     <Dropdown.Item
                       onClick={(e) =>
-                        setTaskUpdate({ ...taskUpdate, status: "Done" })
+                        setTaskUpdate({ ...taskUpdate, status: "DONE" })
                       }
                     >
                       Done
